@@ -8,10 +8,15 @@ import android.app.Application
  * Description :
  */
 class App : Application() {
+    private var app : Application? = null
+
+    open fun getInstance() : Application? {
+        return app
+    }
 
     override fun onCreate() {
         super.onCreate()
-
+        app = this
 
     }
 }

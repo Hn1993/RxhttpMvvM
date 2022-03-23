@@ -1,7 +1,6 @@
 package com.base.net
 
 import rxhttp.wrapper.annotation.Parser
-import rxhttp.wrapper.exception.ParseException
 import rxhttp.wrapper.parse.TypeParser
 import rxhttp.wrapper.utils.convertTo
 import java.io.IOException

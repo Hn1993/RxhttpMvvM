@@ -2,14 +2,11 @@ package com.base.net
 
 import android.util.Log
 import okhttp3.Response
-import rxhttp.RxHttpPlugins
-import rxhttp.toClass
-import rxhttp.toOkResponse
-import rxhttp.tryAwait
 import rxhttp.wrapper.coroutines.Await
 import rxhttp.wrapper.param.RxHttp
 import rxhttp.wrapper.param.toResponse
 import okhttp3.OkHttpClient
+import rxhttp.*
 
 import rxhttp.wrapper.ssl.HttpsUtils
 
@@ -46,6 +43,23 @@ open class BaseRepository {
             .setDebug(true)
         inited = true
     }
+
+    /**
+     * 重写 await 方法加入失败监听
+     */
+    suspend fun <T> Await<T>.callbackAwait(callback: NetStatusCallback<T>){
+        onStart { callback.onRequestStart() }
+            .awaitResult { callback.onComplete(it) }
+            .onFailure { callback.onFailure(it) }
+    }
+
+
+//    interface Callback<T> {
+//        fun onStart()
+//        fun onFailure(t: Throwable)
+//        fun onComplete(t: T)
+//    }
+
 
 
 //    /**

@@ -2,8 +2,12 @@ package com.base.rxhttp_mvvm.ui
 
 import android.util.Log
 import com.base.net.BaseRepository
+import com.base.net.NetStatusCallback
 import com.base.rxhttp_mvvm.bean.Test
+import rxhttp.awaitResult
+import rxhttp.onStart
 import rxhttp.tryAwait
+import rxhttp.wrapper.coroutines.Await
 import rxhttp.wrapper.param.RxHttp
 import rxhttp.wrapper.param.RxHttpNoBodyParam
 import rxhttp.wrapper.param.toResponse
@@ -35,8 +39,11 @@ open class MainRepository : BaseRepository() {
     /**
      * 获取推荐的朋友列表
      */
-    suspend fun getFriendList(): List<Test>? {
-        return RxHttp.get("https://www.wanandroid.com/friend/json").toResponse<List<Test>>()
-            .tryAwait()
+    suspend fun getFriendList(homeActivity: MainActivity) :List<Test>?{
+        return RxHttp.get("https://www.wanandroid.com/friend/json").toResponse<List<Test>>().tryAwait()
     }
+
+
 }
+
+

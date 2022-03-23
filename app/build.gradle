@@ -51,9 +51,6 @@ dependencies {
     implementation Libs.constraintlayout
     implementation project(path: ':net')
 
-//    implementation Libs.okhttp
-//    implementation Libs.rxhttp
-//    ksp  Libs.rxhttp_compiler
     // jetpack
     implementation Libs.coroutines_core
     implementation Libs.coroutines_android
