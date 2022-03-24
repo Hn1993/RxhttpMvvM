@@ -10,6 +10,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewbinding.ViewBinding
+import com.base.common.manager.ActivityManager
 import com.base.common.utils.ToastUtils
 import com.base.net.RequestCallback
 import java.lang.reflect.ParameterizedType
@@ -27,6 +28,7 @@ abstract class BaseActivity<VM : BaseViewModel<*>, DB : ViewBinding> : AppCompat
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        ActivityManager.addActivity(this)
         initViewDataBinding()
         initStatusBar()
         initViews(savedInstanceState)
@@ -146,6 +148,7 @@ abstract class BaseActivity<VM : BaseViewModel<*>, DB : ViewBinding> : AppCompat
     }
 
     override fun onDestroy() {
+        ActivityManager.removeActivity(this)
         super.onDestroy()
     }
 }

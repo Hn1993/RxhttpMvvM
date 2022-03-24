@@ -25,6 +25,10 @@ class MainActivity : BaseActivity<MainViewModel,ActivityMainBinding>(){
 
     override fun initData() {
         viewModel.getData()
+
+        viewModel.dataTest.observe(this,{
+            binding.tv.text = it[0].link
+        })
     }
 
 }

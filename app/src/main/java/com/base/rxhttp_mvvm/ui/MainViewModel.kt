@@ -1,8 +1,11 @@
 package com.base.rxhttp_mvvm.ui
 
 import android.app.Application
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.base.common.base.BaseViewModel
+import com.base.common.utils.Logger
+import com.base.rxhttp_mvvm.bean.Test
 import com.base.rxhttp_mvvm.ui.MainRepository
 import kotlinx.coroutines.launch
 
@@ -13,9 +16,15 @@ import kotlinx.coroutines.launch
  */
 class MainViewModel(application: Application) : BaseViewModel<MainRepository>(application){
 
+    var dataTest = MutableLiveData<List<Test>>()
+
     fun getData(){
         viewModelScope.launch {
-            mRepository.getFriendList()
+            var data: List<Test>? =  mRepository.getFriendList()
+            if (data != null){
+                dataTest.postValue(data)
+            }
+            Logger.i(data.toString())
         }
     }
 }
