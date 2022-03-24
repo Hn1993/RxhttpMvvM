@@ -11,3 +11,4 @@ rootProject.name = "Rxhttp-MvvM"
 include ':app'
 include ':buildsrc'
 include ':net'
+include ':common'

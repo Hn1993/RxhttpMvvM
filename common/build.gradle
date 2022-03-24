@@ -1,5 +1,5 @@
 plugins {
-    id 'com.android.application'
+    id 'com.android.library'
     id 'kotlin-android'
 }
 
@@ -41,23 +41,19 @@ android {
 }
 
 
-
-
 dependencies {
-    implementation Libs.kotlin_stdlib
-    implementation Libs.core_ktx
-    implementation Libs.appcompat
-    implementation Libs.material
-    implementation Libs.constraintlayout
-    implementation project(path: ':net')
-    implementation project(path: ':common')
+    api Libs.kotlin_stdlib
+    api Libs.core_ktx
+    api Libs.appcompat
+    api Libs.material
+    api project(path: ':net')
 
     // jetpack
-    implementation Libs.coroutines_core
-    implementation Libs.coroutines_android
+//    implementation Libs.coroutines_core
+//    implementation Libs.coroutines_android
     api Libs.lifecycle_ktx
     api Libs.lifecycle_common
     api Libs.lifecycle_extensions
-    api Libs.viewmodel_ktx
-    api Libs.livedata_ktx
+//    api Libs.viewmodel_ktx
+//    api Libs.livedata_ktx
 }

@@ -5,7 +5,7 @@ package com.base.net
  * @date 2022/3/23
  * Description :
  */
-open interface NetStatusCallback<T> {
+open interface RequestCallback<T> {
     fun onRequestStart()
     fun onFailure(t: Throwable)
     fun onComplete(t: T)

@@ -2,15 +2,14 @@ package com.base.rxhttp_mvvm.ui;
 
 import androidx.annotation.NonNull;
 
-import com.base.net.BaseRepository;
-import com.base.net.NetStatusCallback;
+import com.base.net.RequestCallback;
 
 /**
  * @author anhuang
  * @date 2022/3/23
  * Description :
  */
-public class HomeActivity implements NetStatusCallback {
+public class HomeActivity implements RequestCallback {
     @Override
     public void onRequestStart() {
 
