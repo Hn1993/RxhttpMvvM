@@ -3,7 +3,7 @@ package com.base.net
 /**
  * @author anhuang
  * @date 2022/3/23
- * Description :
+ * Description : 网络请求监听的回调
  */
 open interface RequestCallback<T> {
     fun onRequestStart()

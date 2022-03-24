@@ -17,7 +17,7 @@ import rxhttp.wrapper.ssl.HttpsUtils;
 public class NetManager {
     private static NetManager NetManager;
     private Application applicationContext = null;
-    private boolean debug = false;
+    private boolean debug = true;
     private static int DEFAULT_TIME_OUT = 30;
 
     public static NetManager getInstance() {

@@ -8,7 +8,6 @@ android {
     buildToolsVersion BuildVersion.buildTools
 
     defaultConfig {
-        applicationId BuildVersion.appId
         minSdk BuildVersion.minSdk
         targetSdk BuildVersion.targetSdk
         versionCode BuildVersion.versionCode
@@ -48,12 +47,7 @@ dependencies {
     api Libs.material
     api project(path: ':net')
 
-    // jetpack
-//    implementation Libs.coroutines_core
-//    implementation Libs.coroutines_android
     api Libs.lifecycle_ktx
     api Libs.lifecycle_common
     api Libs.lifecycle_extensions
-//    api Libs.viewmodel_ktx
-//    api Libs.livedata_ktx
 }

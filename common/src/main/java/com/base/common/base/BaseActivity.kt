@@ -3,28 +3,33 @@ package com.base.common.base
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
+import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import androidx.viewbinding.ViewBinding
 import com.base.common.utils.ToastUtils
 import com.base.net.RequestCallback
+import java.lang.reflect.ParameterizedType
+import java.lang.reflect.Type
 
 /**
  * @author：tqzhang on 18/3/12 19:22
  */
-abstract class BaseActivity<T : AndroidViewModel, binding : ViewDataBinding> : AppCompatActivity(),
+
+abstract class BaseActivity<VM : BaseViewModel<*>, DB : ViewBinding> : AppCompatActivity(),
     RequestCallback<Any> {
+
+    protected lateinit var viewModel: VM
+    protected lateinit var binding: DB
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //状态栏
+        initViewDataBinding()
         initStatusBar()
-        //设置布局内容
-        setContentView(layoutId)
-        //初始化控件
         initViews(savedInstanceState)
-        //初始化ToolBar
-        initToolBar()
     }
 
     /**
@@ -60,6 +65,50 @@ abstract class BaseActivity<T : AndroidViewModel, binding : ViewDataBinding> : A
     protected fun initToolBar() {
         //doSomething
     }
+
+
+
+
+    /**
+     * DataBinding or ViewBinding
+     */
+    private fun initViewDataBinding() {
+        val type = javaClass.genericSuperclass
+        if (type is ParameterizedType) {
+            val cls = type.actualTypeArguments[1] as Class<*>
+            when {
+                ViewDataBinding::class.java.isAssignableFrom(cls) && cls != ViewDataBinding::class.java -> {
+                    if (layoutId == 0) throw IllegalArgumentException("Using DataBinding requires overriding method layoutId")
+                    binding = DataBindingUtil.setContentView(this, layoutId)
+                    (binding as ViewDataBinding).lifecycleOwner = this
+                }
+                ViewBinding::class.java.isAssignableFrom(cls) && cls != ViewBinding::class.java -> {
+                    cls.getDeclaredMethod("inflate", LayoutInflater::class.java).let {
+                        @Suppress("UNCHECKED_CAST")
+                        binding = it.invoke(null, layoutInflater) as DB
+                        setContentView(binding.root)
+                    }
+                }
+                else -> {
+                    if (layoutId == 0) throw IllegalArgumentException("If you don't use ViewBinding, you need to override method layoutId")
+                    setContentView(layoutId)
+                }
+            }
+            createViewModel(type.actualTypeArguments[0])
+        } else throw IllegalArgumentException("Generic error")
+    }
+
+
+    /**
+     * 创建 ViewModel
+     */
+    @Suppress("UNCHECKED_CAST")
+    private fun createViewModel(type: Type) {
+        val tClass = type as? Class<VM> ?: BaseViewModel::class.java
+        viewModel = ViewModelProvider(viewModelStore, defaultViewModelProviderFactory)
+            .get(tClass) as VM
+    }
+
 
     /**
      * 显示进度条
