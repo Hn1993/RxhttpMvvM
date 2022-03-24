@@ -50,4 +50,5 @@ dependencies {
     api Libs.lifecycle_ktx
     api Libs.lifecycle_common
     api Libs.lifecycle_extensions
+    api Libs.xxpermission
 }
