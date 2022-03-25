@@ -18,6 +18,15 @@ public class Logger {
         Log.i(TAG, msg);
     }
 
+    public static void e( String msg) {
+        int max_str_length = 2001 - TAG.length();
+        while (msg.length() > max_str_length) {
+            Log.e(TAG, msg.substring(0, max_str_length));
+            msg = msg.substring(max_str_length);
+        }
+        Log.e(TAG, msg);
+    }
+
     /**
      * 格式化json字符串
      *

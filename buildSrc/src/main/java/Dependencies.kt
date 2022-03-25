@@ -31,6 +31,7 @@ object Versions {
     const val livedata_unpeek = "7.2.0-beta1"
 
     const val xxpermission = "13.5"
+    const val glide = "4.13.0"
 
 }
 
@@ -56,5 +57,7 @@ object Libs {
     const val livedata_ktx = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.livedata_ktx}"
     const val livedata_unpeek = "com.kunminx.arch:unpeek-livedata:${Versions.livedata_unpeek}"
     const val xxpermission = "com.github.getActivity:XXPermissions:${Versions.xxpermission}"
+    const val glide = "com.github.bumptech.glide:glide:${Versions.glide}"
+    const val glide_compiler = "com.github.bumptech.glide:compiler:${Versions.glide}"
 
 }

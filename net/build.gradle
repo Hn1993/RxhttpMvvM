@@ -53,6 +53,6 @@ dependencies {
     api Libs.constraintlayout
     api Libs.okhttp
     api Libs.rxhttp
-    ksp  Libs.rxhttp_compiler
+    ksp Libs.rxhttp_compiler
 
 }
