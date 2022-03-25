@@ -55,10 +55,10 @@ dependencies {
     // jetpack
     implementation Libs.coroutines_core
     implementation Libs.coroutines_android
-    api Libs.lifecycle_ktx
-    api Libs.lifecycle_common
-    api Libs.lifecycle_extensions
-    api Libs.viewmodel_ktx
-    api Libs.livedata_ktx
-    api Libs.livedata_unpeek
+    implementation Libs.lifecycle_ktx
+    implementation Libs.lifecycle_common
+    implementation Libs.lifecycle_extensions
+    implementation Libs.viewmodel_ktx
+    implementation Libs.livedata_ktx
+    implementation Libs.livedata_unpeek
 }
