@@ -7,6 +7,7 @@ import com.base.common.base.BaseViewModel
 import com.base.common.utils.Logger
 import com.base.rxhttp_mvvm.bean.Test
 import com.base.rxhttp_mvvm.ui.MainRepository
+import com.kunminx.architecture.ui.callback.UnPeekLiveData
 import kotlinx.coroutines.launch
 
 /**
@@ -16,7 +17,7 @@ import kotlinx.coroutines.launch
  */
 class MainViewModel(application: Application) : BaseViewModel<MainRepository>(application){
 
-    var dataTest = MutableLiveData<List<Test>>()
+    var dataTest = UnPeekLiveData<List<Test>>()
 
     fun getData(){
         viewModelScope.launch {

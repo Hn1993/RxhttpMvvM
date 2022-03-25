@@ -60,4 +60,5 @@ dependencies {
     api Libs.lifecycle_extensions
     api Libs.viewmodel_ktx
     api Libs.livedata_ktx
+    api Libs.livedata_unpeek
 }

@@ -28,6 +28,7 @@ object Versions {
 
     const val viewmodel_ktx = "2.3.0"
     const val livedata_ktx = "2.2.0"
+    const val livedata_unpeek = "7.2.0-beta1"
 
     const val xxpermission = "13.5"
 
@@ -53,6 +54,7 @@ object Libs {
     const val viewmodel_ktx = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.viewmodel_ktx}"
     // liveData
     const val livedata_ktx = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.livedata_ktx}"
+    const val livedata_unpeek = "com.kunminx.arch:unpeek-livedata:${Versions.livedata_unpeek}"
     const val xxpermission = "com.github.getActivity:XXPermissions:${Versions.xxpermission}"
 
 }
